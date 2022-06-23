@@ -32,7 +32,13 @@ if (isset($_GET['submit'])) {
               $sqlcourses = "SELECT * FROM tbl_subjects WHERE subject_name LIKE '%$search%' AND subject_price BETWEEN 151 AND 300";
             }
       } else {
-          $sqlcourses = "SELECT * FROM tbl_subjects WHERE subject_name LIKE '%$search%'";
+        if ($rating == "4") {
+          $sqlcourses = "SELECT * FROM tbl_subjects WHERE subject_name LIKE '%$search%' AND subject_rating BETWEEN 4.1 AND 5";
+      }elseif ($rating == "3") {
+        $sqlcourses = "SELECT * FROM tbl_subjects WHERE subject_name LIKE '%$search%' AND subject_rating BETWEEN 3 AND 4";
+      } else {
+        $sqlcourses = "SELECT * FROM tbl_subjects WHERE subject_name LIKE '%$search%'";
+      }
       }
   }
 } else {
